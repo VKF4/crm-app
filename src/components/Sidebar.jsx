@@ -1,11 +1,14 @@
 import { Box, Button, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = ({ title, tabButton }) => {
+  const navigate = useNavigate();
+
   return (
-    <>
+    <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
       <Box
         sx={{
-          width: "100%",
+          width: 250,
           height: 100,
           backgroundColor: "#323232",
           borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
@@ -19,7 +22,7 @@ const Sidebar = ({ title, tabButton }) => {
           variant="h4"
           sx={{
             color: "white",
-            padding: 4,
+            padding: 2,
             fontWeight: 600,
             letterSpacing: "0.5px",
             textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)",
@@ -31,7 +34,7 @@ const Sidebar = ({ title, tabButton }) => {
       <Box
         sx={{
           width: 250,
-          height: "90vh",
+          flexGrow: 1,
           backgroundColor: "#658092",
         }}
       >
@@ -40,21 +43,25 @@ const Sidebar = ({ title, tabButton }) => {
             key={index}
             variant="text"
             startIcon={button.icon}
+            onClick={() => navigate(button.path)}
             sx={{
               color: "white",
-              fontSize: 23,
+              fontSize: 16,
               width: "100%",
               height: 65,
               textTransform: "none",
               justifyContent: "flex-start",
               paddingLeft: 2,
+              "&:hover": {
+                backgroundColor: "rgba(255, 255, 255, 0.1)",
+              },
             }}
           >
             {button.text}
           </Button>
         ))}
       </Box>
-    </>
+    </Box>
   );
 };
 
