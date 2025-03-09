@@ -7,6 +7,7 @@ import Sidebar from "./components/Sidebar";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ArticleIcon from "@mui/icons-material/Article";
 import PeopleIcon from "@mui/icons-material/People";
+import Header from "./components/Header";
 
 function App() {
   const tabButton = [
@@ -17,14 +18,17 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app-container">
-        <Sidebar title="CRM App" tabButton={tabButton} />
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/quotation/list" element={<QuotationList />} />
-            <Route path="/customer/list" element={<CustomerList />} />
-          </Routes>
-        </main>
+        <Header title={"CRM App"} />
+        <div className="content-wrapper">
+          <Sidebar tabButton={tabButton} />
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/quotation/list" element={<QuotationList />} />
+              <Route path="/customer/list" element={<CustomerList />} />
+            </Routes>
+          </main>
+        </div>
       </div>
     </BrowserRouter>
   );
