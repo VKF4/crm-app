@@ -1,16 +1,22 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const Sidebar = ({ tabButton }) => {
   const navigate = useNavigate();
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100%",
+      }}
+    >
       <Box
         sx={{
           width: 250,
-          flexGrow: 1,
           backgroundColor: "#658092",
+          height: "100%",
         }}
       >
         {tabButton.map((button, index) => (
