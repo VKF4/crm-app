@@ -1,16 +1,43 @@
-import { Typography } from "@mui/material";
+import { Box, Button, Typography, IconButton } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 import DataTable from "../components/DataTable";
 
 const CustomerList = () => {
   const columns = [
-    { field: "id", headerName: "N°", width: 70 },
-    { field: "firstName", headerName: "Prénom", width: 130 },
-    { field: "lastName", headerName: "Nom", width: 130 },
+    { field: "id", headerName: "N°" },
+    { field: "firstName", headerName: "Prénom" },
+    { field: "lastName", headerName: "Nom" },
+    { field: "telephone", headerName: "Téléphone" },
+    { field: "email", headerName: "Email" },
+    { field: "poste", headerName: "Poste occupé" },
     {
       field: "age",
       headerName: "Âge",
       type: "number",
-      width: 90,
+    },
+    {
+      field: "actions",
+      headerName: "Actions",
+      sortable: false,
+      renderCell: (params) => (
+        <Box>
+          <IconButton
+            color="primary"
+            onClick={() => handleEdit(params.row.id)}
+            size="small"
+          >
+            <EditIcon />
+          </IconButton>
+          <IconButton
+            color="error"
+            onClick={() => handleDelete(params.row.id)}
+            size="small"
+          >
+            <DeleteIcon />
+          </IconButton>
+        </Box>
+      ),
     },
   ];
 
@@ -30,6 +57,23 @@ const CustomerList = () => {
   return (
     <>
       <Typography variant="h4">Gestion des clients</Typography>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          width: "100%",
+          marginTop: 2,
+          justifyContent: "flex-end",
+        }}
+      >
+        <Button
+          sx={{ borderColor: "#658092", color: "#658092" }}
+          variant="outlined"
+        >
+          Ajouter
+        </Button>
+      </Box>
+
       <DataTable
         columns={columns}
         rows={rows}
