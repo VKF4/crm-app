@@ -5,8 +5,9 @@ import { frFR } from "@mui/x-data-grid/locales";
 
 const DataTable = ({ rows, columns, paginationModel }) => {
   return (
-    <Paper sx={{ height: "80%", width: "100%", marginTop: 2, boxShadow: 20 }}>
+    <Paper sx={{ height: "85%", width: "100%", marginTop: 2, boxShadow: 20 }}>
       <DataGrid
+        autoWidth
         localeText={frFR.components.MuiDataGrid.defaultProps.localeText}
         rows={rows}
         columns={columns}
@@ -18,12 +19,17 @@ const DataTable = ({ rows, columns, paginationModel }) => {
         }}
         pageSizeOptions={[5, 10, 25, 50]}
         checkboxSelection
-        disableRowSelectionOnClick
-        autosizeOptions={DEFAULT_GRID_AUTOSIZE_OPTIONS.expand}
+        autosizeOptions={{}}
         sx={{
           border: 0,
           "& .MuiDataGrid-cell:hover": {
             cursor: "pointer",
+          },
+          "& .MuiDataGrid-cell:focus": {
+            outline: "none",
+          },
+          "& .MuiDataGrid-cell.MuiDataGrid-cell--selected": {
+            backgroundColor: "transparent !important",
           },
           "& .MuiDataGrid-columnHeaders": {
             color: "#323232",
@@ -31,18 +37,27 @@ const DataTable = ({ rows, columns, paginationModel }) => {
           "& .MuiDataGrid-row:nth-of-type(even)": {
             backgroundColor: "#f5f5f5",
           },
-          "& .MuiDataGrid-row:hover": {
-            backgroundColor: "#658092",
-            color: "white",
-            "& .MuiCheckbox-root": {
-              color: "white",
-            },
-            "& .MuiIconButton-root": {
-              color: "white",
-            },
-          },
           "& .MuiCheckbox-root": {
             color: "#658092",
+            "&.Mui-checked": {
+              color: "#658092",
+            },
+            "&:hover": {
+              backgroundColor: "transparent",
+            },
+          },
+          "& .MuiDataGrid-row.Mui-selected": {
+            backgroundColor: "transparent !important",
+          },
+          "& .MuiDataGrid-row:hover": {
+            backgroundColor: "#658092",
+            color: "#323232",
+            "& .MuiCheckbox-root": {
+              color: "#323232",
+            },
+            "& .MuiIconButton-root": {
+              color: "#323232",
+            },
           },
           "& .MuiDataGrid-columnHeaderCheckbox": {
             color: "white",
@@ -56,6 +71,17 @@ const DataTable = ({ rows, columns, paginationModel }) => {
           },
           "& .MuiIconButton-root": {
             color: "#658092",
+          },
+          "& .MuiDataGrid-cell:focus-within": {
+            outline: "none !important",
+          },
+          "& .MuiDataGrid-cell.MuiDataGrid-cell--editing": {
+            backgroundColor: "transparent !important",
+          },
+          "& .MuiDataGrid-actionsCell": {
+            "& .MuiDataGrid-cell--selected": {
+              backgroundColor: "transparent !important",
+            },
           },
         }}
       />
